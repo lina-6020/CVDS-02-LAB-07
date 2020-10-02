@@ -1,9 +1,9 @@
-#Persistencia  
+# Persistencia  
 ### Sección I. Introducción a JDBC  
-#### Clonamos el proyecto
-#### Descargamos el archivo ```JDBCExample.java``` en el paquete ```edu.eci.cvds.sampleprj.jdbc.example```
-#### En la clase ```JDBCExample``` ajuste los siguientes parámetros
-     ```URL:
+* Clonamos el proyecto
+* Descargamos el archivo ```JDBCExample.java``` en el paquete ```edu.eci.cvds.sampleprj.jdbc.example```
+* En la clase ```JDBCExample``` ajuste los siguientes parámetros
+     ``` URL:
      DRIVER:
      USUARIO: 
      CONTRASEÑA: ```				 
