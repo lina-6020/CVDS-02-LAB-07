@@ -18,9 +18,17 @@ package edu.eci.cvds.samples.services.client;
 
 
 
+import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
+import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
+import edu.eci.cvds.samples.entities.Item;
+import edu.eci.cvds.samples.entities.TipoItem;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -63,20 +71,46 @@ public class MyBatisExample {
         SqlSession sqlss = sessionfact.openSession();
 
         
-        //Crear el mapper y usarlo: 
-        //ClienteMapper cm=sqlss.getMapper(ClienteMapper.class)
-        //cm...
+        //Crear el mapper y usarlo:
+        ClienteMapper cm = sqlss.getMapper(ClienteMapper.class);
+        imprimirEspacios("Clientes");
+        System.out.println(cm.consultarClientes());
+        imprimirEspacios("Clientes por ID");
+        System.out.println(cm.consultarCliente(3));
+        ItemMapper im= sqlss.getMapper(ItemMapper.class);
         
         
+        imprimirEspacios("Items");
+        System.out.println(im.consultarItems());
+        imprimirEspacios("Items Por ID");
         
-        sqlss.commit();
-        
-        
-        sqlss.close();
 
-        
-        
+        sqlss.commit();
+        sqlss.close();
     }
+    
+    /**
+     * Parse string to date
+     * @param date
+     * @return 
+     */
+    public static Date parseDate(String date) {
+        try {
+            return new SimpleDateFormat("yyyy-MM-dd").parse(date);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+    
+    public static void imprimirEspacios(String tipo){
+        System.out.println("");
+        System.out.println("");
+        System.out.println("----------.Imprimiendo CONSULTA de "+ tipo+ "--------------");
+        System.out.println("");
+        System.out.println("");
+
+    }
+   
 
 
 }
