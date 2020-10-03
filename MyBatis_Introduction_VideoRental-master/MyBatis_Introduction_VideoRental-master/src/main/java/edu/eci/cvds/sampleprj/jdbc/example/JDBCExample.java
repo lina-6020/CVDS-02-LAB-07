@@ -31,17 +31,18 @@ import java.util.logging.Logger;
  * @author hcadavid
  */
 public class JDBCExample {
-		private static final String SQL_REGISTRAR_NUEVO_PRODUCTO = "INSERT INTO ORD_PRODUCTOS(codigo, nombre, precio) VALUES (?,?,?)";
-		private static final String SQL_NOMBRE_PRODUCTOS_PEDIDO = "SELECT nombre FROM ORD_PRODUCTOS WHERE codigo = ?";
-		private static final String SQL_VALOR_TOTAL_PEDIDO = "SELECT SUM(cantidad*ORD_PRODUCTOS.precio) FROM ORD_DETALLE_PEDIDO,ORD_PRODUCTOS WHERE producto_fk = ORD_PRODUCTOS-codigo && pedido_fk = ?;";
-		
+	
+	 private static final String SQL_REGISTRAR_NUEVO_PRODUCTO = "INSERT INTO ORD_PRODUCTOS(codigo, nombre, precio) VALUES (?,?,?)";
+	 private static final String SQL_NOMBRE_PRODUCTOS_PEDIDO = "SELECT nombre FROM ORD_PRODUCTOS WHERE codigo = ?";
+	 private static final String SQL_VALOR_TOTAL_PEDIDO= "SELECT SUM(cantidad*ORD_PRODUCTOS.precio) FROM ORD_DETALLE_PEDIDO,ORD_PRODUCTOS WHERE producto_fk = ORD_PRODUCTOS.codigo && pedido_fk = ?;";
+	    
     
     public static void main(String args[]){
         try {
             String url="jdbc:mysql://desarrollo.is.escuelaing.edu.co:3306/bdprueba";
             String driver="com.mysql.jdbc.Driver";
             String user="bdprueba";
-            String pwd="prueba2019";
+            String pwd="prueba2019"; 
                         
             Class.forName(driver);
             Connection con=DriverManager.getConnection(url,user,pwd);
@@ -61,9 +62,9 @@ public class JDBCExample {
             System.out.println("-----------------------");
             
             
-            int suCodigoECI=2146684;
-            registrarNuevoProducto(con, suCodigoECI, "LINA", 99999999);     
-            nombresProductosPedido(con,2146684);
+            int suCodigoECI=2145059;
+            registrarNuevoProducto(con, suCodigoECI, "LINAaaaa", 99999999);
+            nombresProductosPedido(con, 2146684);
             con.commit();
                         
             
@@ -87,10 +88,10 @@ public class JDBCExample {
     public static void registrarNuevoProducto(Connection con, int codigo, String nombre,int precio) throws SQLException{
         //Crear preparedStatement
     	PreparedStatement st = null;
+    	
     	int filas = 0;
     	st = con.prepareStatement(SQL_REGISTRAR_NUEVO_PRODUCTO);
     	int index = 1;
-    	
         //Asignar parámetros
     	st.setInt(index++, codigo);
     	st.setString(index++, nombre);
@@ -99,7 +100,7 @@ public class JDBCExample {
     	System.out.println("Ejecutando query: " + SQL_REGISTRAR_NUEVO_PRODUCTO);
         //usar 'execute'
     	filas = st.executeUpdate();
-    	System.out.println("N. filas insertadas: " + filas);
+    	System.out.println("Numero de filas insertadas: " + filas);
 
         
         con.commit();
@@ -117,28 +118,31 @@ public class JDBCExample {
         
         //Crear prepared statement
         PreparedStatement st = null;
+        
         ResultSet res = null;
         String nombre = null;
         //asignar parámetros
         //usar executeQuery
         try {
-        		st = con.prepareStatement(SQL_NOMBRE_PRODUCTOS_PEDIDO);
-        		st.setInt(1, codigoPedido);
-        		res = st.executeQuery();
-        		
-        		while (res.next()) {
-        			nombre = res.getString(1);
-        			np.add(nombre);
-        		}		
+        	
+        	st = con.prepareStatement(SQL_NOMBRE_PRODUCTOS_PEDIDO);
+        	st.setInt(1, codigoPedido);
+        	res = st.executeQuery();
+        	
+        	while (res.next()) {
+        		nombre = res.getString(1);
+        		np.add(nombre);
+        	}
         }catch(SQLException e) {
         	e.printStackTrace();
-        	
         }
         
         //Sacar resultados del ResultSet
         //Llenar la lista y retornarla
         System.out.println("Ejecutando query: " + SQL_NOMBRE_PRODUCTOS_PEDIDO);
         System.out.println(np);
+        
+        
         return np;
     }
 
@@ -157,19 +161,20 @@ public class JDBCExample {
     	int valorTotal = 0;
         //asignar parámetros
     	try {
-    			st = con.prepareStatement(SQL_VALOR_TOTAL_PEDIDO);
-    			st.setInt(1, codigoPedido);
-    			res = st.executeQuery();
-    			while(res.next()) {
-    				valorTotal = res.getInt(1);
-    			}
+    		st = con.prepareStatement(SQL_VALOR_TOTAL_PEDIDO);
+    		st.setInt(1, codigoPedido);
+    		res = st.executeQuery();
+    		
+    		while(res.next()) {
+    			valorTotal = res.getInt(1);
+    		}
     	} catch(SQLException e) {
     		e.printStackTrace();
     	}
         //usar executeQuery
         //Sacar resultado del ResultSet
-    	return valorTotal;
         
+        return valorTotal;
     }
     
 

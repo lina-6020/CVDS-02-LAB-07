@@ -67,23 +67,23 @@ public class MyBatisExample {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
         SqlSession sqlss = sessionfact.openSession();
         //Crear el mapper y usarlo: 
-        ClienteMapper cm = sqlss.getMapper(ClienteMapper.class);
+        ClienteMapper clienteMapper = sqlss.getMapper(ClienteMapper.class);
         imprimirEspacios("Clientes");
-        System.out.println(cm.consultarClientes());
+        System.out.println(clienteMapper.consultarClientes());
         imprimirEspacios("Clientes por ID");
-        System.out.println(cm.consultarCliente(3));
+        System.out.println(clienteMapper.consultarCliente(3));
         //Para la ejecucion final de las pruebas quitar el comentario de la siguiente instruccion
-        cm.agregarItemRentadoACliente(5, 1, parseDate("2019-03-12"), parseDate("2019-04-12"));
-        ItemMapper im= sqlss.getMapper(ItemMapper.class);
-        TipoItem tipoIt= new TipoItem(3,"Peliculas");
-        Item it = new Item(tipoIt,1020837962,"NuevoItemxe","Este es el nuevo Item xe",parseDate("2020-03-12"),9999, "formatoxD4_0","genero4_0 final"); 
+        //clienteMapper.agregarItemRentadoACliente(5, 1, parseDate("2020-03-12"), parseDate("2020-04-12"));
+        ItemMapper itemMapper= sqlss.getMapper(ItemMapper.class);
+        TipoItem tipoIt= new TipoItem(73,"coronavirus");
+        Item it = new Item(tipoIt,39621635,"NuevoItemxxx","Este es el nuevo Item xxxx",parseDate("2020-03-12"),9999, "hola","pop"); 
         //Para la ejecucion final de las pruebas quitar el comentario de la siguiente instruccion
-        im.insertarItem(it);
+        itemMapper.insertarItem(it);
         
         imprimirEspacios("Items");
-        System.out.println(im.consultarItems());
+        System.out.println(itemMapper.consultarItems());
         imprimirEspacios("Items Por ID");
-        System.out.println(im.consultarItem(9999));
+        System.out.println(itemMapper.consultarItem(9999));
         
 
         sqlss.commit();
@@ -106,7 +106,7 @@ public class MyBatisExample {
     public static void imprimirEspacios(String tipo){
         System.out.println("");
         System.out.println("");
-        System.out.println("----------.Imprimiendo CONSULTA de "+ tipo+ "--------------");
+        System.out.println("----------Resultados de la consulta de "+ tipo+ "--------------");
         System.out.println("");
         System.out.println("");
 
