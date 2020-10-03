@@ -46,4 +46,16 @@ y en el elemento ```<collection>``` agregamos una propiedad que indique cual es 
 ![image](https://user-images.githubusercontent.com/59893804/94979157-db1c8280-04e6-11eb-805e-e279834a7595.png)
 
 ### Parte II 
+* Configuramos la operación _consultarCliente(int id)_ del ```ClienteMapper```. En este caso se debe usar en el WHERE de sus correspondiente sentencia SQL.
+![image](https://user-images.githubusercontent.com/59893804/94979872-191ba580-04eb-11eb-81e7-230b090f0f90.png)
+
+* Configuramos la operacion _insertarItem(Item it)_
+![image](https://user-images.githubusercontent.com/59893804/94979941-71eb3e00-04eb-11eb-8edd-f1390db6bd1d.png)
+
+* Configuramos las operaciones _'consultarItem(int it)_ y _'consultarItems()'_
+![image](https://user-images.githubusercontent.com/59893804/94979978-b545ac80-04eb-11eb-8917-4e1b7a8eb9a8.png)
+ 
+ * Por ultimo adicionamos el _'resultMap'_ necesario para las operaciones 
+ ![image](https://user-images.githubusercontent.com/59893804/94980031-f938b180-04eb-11eb-8b75-2445d619570c.png)
+ 
 
