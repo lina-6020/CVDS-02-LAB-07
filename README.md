@@ -14,6 +14,9 @@
      ```				 
  ![image](https://user-images.githubusercontent.com/59893804/94978280-4a43a800-04e2-11eb-95c3-21e45800f3c4.png)
  
+* Hacemos la conexión a la base de datos 
+![image](https://user-images.githubusercontent.com/59893804/94978620-d99d8b00-04e3-11eb-9b83-b786971f3bb0.png)
+ 
 * Implementamos las operaciones faltantes 
 ![image](https://user-images.githubusercontent.com/59893804/94978357-a3abd700-04e2-11eb-827e-d6442dde5305.png)
 
@@ -22,3 +25,25 @@
 
 ## Sección II. Introducción a MyBatis
 * Revisamos la documentación básica de MyBatis y seguimos las instrucciones que se encuentran en el repositorio 
+
+### Parte I 
+* Ubicamos los archivos de configuración para producción de MyBATIS (mybatis-config.xml). Editamos y agregamos _'typeAliases'_
+![image](https://user-images.githubusercontent.com/59893804/94978698-38fb9b00-04e4-11eb-93ec-76cde4f0e1d2.png)
+
+* Configuraremos un mapper que permita que el framework reconstruya todos los objetos _Cliente_ con sus detalles.
+![image](https://user-images.githubusercontent.com/59893804/94978815-bb845a80-04e4-11eb-92da-787273eb9264.png)
+
+* Ejecutamos una sentencia en un cliente SQL y revisamos el resultado a la consulta propuesta.
+![image](https://user-images.githubusercontent.com/59893804/94978825-d060ee00-04e4-11eb-90a4-c1a148fac62b.png)
+
+![image](https://user-images.githubusercontent.com/59893804/94978832-d951bf80-04e4-11eb-8304-79f996af374e.png)
+
+* En el XML ```ClienteMapper.xml``` mapeamos un elemento de tipo ```<select>``` al método _'consultarClientes'_ 
+![image](https://user-images.githubusercontent.com/59893804/94978902-5ed56f80-04e5-11eb-8588-76b91782a581.png)
+
+* En el XML agregamos un elemento de tipo ```<resultMap>``` 
+y en el elemento ```<collection>``` agregamos una propiedad que indique cual es el _'resultMap'_ 
+![image](https://user-images.githubusercontent.com/59893804/94979157-db1c8280-04e6-11eb-805e-e279834a7595.png)
+
+### Parte II 
+
