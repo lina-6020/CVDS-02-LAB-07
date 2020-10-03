@@ -46,7 +46,7 @@ y en el elemento ```<collection>``` agregamos una propiedad que indique cual es 
 ![image](https://user-images.githubusercontent.com/59893804/94979157-db1c8280-04e6-11eb-805e-e279834a7595.png)
 
 ### Parte II 
-* Configuramos la operación _consultarCliente(int id)_ del ```ClienteMapper```.En este caso se debe usar en el WHERE de sus correspondiente sentencia SQL
+* Configuramos la operación _consultarCliente(int id)_ del ```ClienteMapper```.En este caso se debe usar en el WHERE de su correspondiente sentencia SQL
 
 ![image](https://user-images.githubusercontent.com/59893804/94979872-191ba580-04eb-11eb-81e7-230b090f0f90.png)
 
