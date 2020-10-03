@@ -13,13 +13,12 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ * Ayuda y coloboracion de https://github.com/juancamilo399/cvds_lab7
  */
 package edu.eci.cvds.samples.services.client;
 
-
-
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
-
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
 import edu.eci.cvds.samples.entities.Item;
 import edu.eci.cvds.samples.entities.TipoItem;
@@ -35,10 +34,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-/**
- *
- * @author hcadavid
- */
+
 public class MyBatisExample {
 
     /**
@@ -63,27 +59,31 @@ public class MyBatisExample {
 
     /**
      * Programa principal de ejempo de uso de MyBATIS
+     *
      * @param args
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void main(String args[]) throws SQLException {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
-
         SqlSession sqlss = sessionfact.openSession();
-
-        
-        //Crear el mapper y usarlo:
+        //Crear el mapper y usarlo: 
         ClienteMapper cm = sqlss.getMapper(ClienteMapper.class);
         imprimirEspacios("Clientes");
         System.out.println(cm.consultarClientes());
         imprimirEspacios("Clientes por ID");
         System.out.println(cm.consultarCliente(3));
+        //Para la ejecucion final de las pruebas quitar el comentario de la siguiente instruccion
+        cm.agregarItemRentadoACliente(5, 1, parseDate("2019-03-12"), parseDate("2019-04-12"));
         ItemMapper im= sqlss.getMapper(ItemMapper.class);
-        
+        TipoItem tipoIt= new TipoItem(3,"Peliculas");
+        Item it = new Item(tipoIt,1020837962,"NuevoItemxe","Este es el nuevo Item xe",parseDate("2020-03-12"),9999, "formatoxD4_0","genero4_0 final"); 
+        //Para la ejecucion final de las pruebas quitar el comentario de la siguiente instruccion
+        im.insertarItem(it);
         
         imprimirEspacios("Items");
         System.out.println(im.consultarItems());
         imprimirEspacios("Items Por ID");
+        System.out.println(im.consultarItem(9999));
         
 
         sqlss.commit();
@@ -111,7 +111,5 @@ public class MyBatisExample {
         System.out.println("");
 
     }
-   
-
 
 }
